@@ -8,6 +8,8 @@ const subjectModel = require("../modules/subject/model/subject.model")
 const classModel = require("../modules/class/models/class.models")
 const teacherModel = require("../modules/teacher/models/teacher.model")
 const studentModel = require("../modules/student/model/student.model")
+const student_classModel = require('../modules/students_class/models/student.class.models')
+const teacher_classModel = require('../modules/teacher_class/models/teacher_class.models')
 
 
 
@@ -39,6 +41,8 @@ module.exports = async () => {
   const classes = classModel(sequelize, Sequelize);
   const teacher = teacherModel(sequelize, Sequelize);
   const student = studentModel(sequelize, Sequelize);
+  const StudentClass = student_classModel(sequelize, Sequelize);
+  const TeacherClass =  teacher_classModel(sequelize, Sequelize);
   
 
 
@@ -51,32 +55,38 @@ module.exports = async () => {
   
 
 
-   classes.hasMany(teacher, { foreignKey: 'id' })
-  teacher.belongsTo(classes, { foreignKey: 'id',target_key : 'class_id' })
+ 
+
+  subject.hasMany(teacher, { foreignKey: 'subject_id' })
+  teacher.belongsTo(subject)
 
 
-  subject.hasMany(teacher, { foreignKey: 'id' })
-  teacher.belongsTo(subject, { foreignKey: 'id',target_key :'subject_id' })
+  classes.hasMany(StudentClass,{ foreignKey: 'class_id' })
+  StudentClass.belongsTo(classes)
 
 
-  classes.hasMany(teacher, { foreignKey: 'id' })
-  student.belongsTo(student, { foreignKey: 'id',target_key : 'class_id' })
+  student.hasMany(StudentClass,{foreignKey: 'student_id'})
+  StudentClass.belongsTo(student)
 
 
-  subject.hasMany(teacher, { foreignKey: 'id' })
-  student.belongsTo(student, { foreignKey: 'id',target_key :'subject_id' })
+  classes.hasMany(TeacherClass,{ foreignKey: 'class_id' })
+  TeacherClass.belongsTo(classes)
+
+
+  teacher.hasMany(TeacherClass,{foreignKey: 'teacher_id'})
+  TeacherClass.belongsTo(teacher)
 
 
 
-  subject.hasMany(classes, { foreignKey: 'id' })
-  classes.belongsTo(subject, { foreignKey: 'id',target_key : 'subject_id' })
   
-
   
 
   const Models = {
     dbInstanceData,
-   subject,classes,teacher
+   subject,classes,teacher,
+   student,
+   StudentClass,
+   TeacherClass
     
     
 

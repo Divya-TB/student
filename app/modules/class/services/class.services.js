@@ -1,5 +1,6 @@
 const Query = require('../Query/class.query')
-
+const teacher_class = require('../../teacher_class/Query/teacher_class.query')
+const student_class = require('../../students_class/Query/student.class.query')
 var moment = require('moment');
 
 const Sequelize = require('sequelize');
@@ -150,7 +151,13 @@ module.exports.delete =  async (req)=>{
       status: 2,
       where : {id : req.params.id}
     }
-  
+  let query = {
+    status: 2,
+    where : {class_id : req.params.id}
+  }
+ 
+    await teacher_class.teacherClassdelete(query);
+    await student_class.studentClassdelete(query);
     const data = await Query.classdelete(query_builder);
     return(data);
   }

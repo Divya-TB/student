@@ -4,7 +4,7 @@ let dev = {
     host: "localhost",
     user: "postgres",
     password: "123456789",
-    database: "project",
+    database: "studentTeacher",
     port: 5432,
   
   

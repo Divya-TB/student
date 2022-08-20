@@ -70,12 +70,7 @@ module.exports = app => {
    *         value: application/x-www-form-urlencoded
    *         required: true
    * 
-   *       - name: subject_id
-   *         in: formData
-   *         required: true
-   *         type: array
-   *         item: {
-   *              type: string} 
+   
    * 
    *       - name: name
    *         in: formData
@@ -128,11 +123,7 @@ module.exports = app => {
    *         required: true
    *         type: integer
    * 
-   *       - name: subject_id
-   *         in: formData
-   *         required: true
-   *         type: integer
-   * 
+   
    *       - name: name
    *         in: formData
    *         required: true

@@ -4,8 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     return sequelize.define(
         "teacher",
         {
-            class_id:{type: DataTypes.JSON, allowNull: false},
-            subject_id:{type: DataTypes.JSON, allowNull: false},
+            subject_id : {type: DataTypes.INTEGER, allowNull: false},
             name: { type: DataTypes.STRING, allowNull: false},
             email: { type: DataTypes.STRING, allowNull: false },
             phone: { type: DataTypes.STRING, allowNull: false },
@@ -13,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             cityORcountry: { type: DataTypes.STRING, allowNull: false },
             state: { type: DataTypes.STRING, allowNull: false },
             password: { type: DataTypes.STRING, allowNull: false },
+            user_type: { type: DataTypes.STRING, allowNull: false },
             email_verification: { type: DataTypes.STRING, allowNull: true},
             auth_token: { type: DataTypes.STRING, allowNull: true },
             image: { type: DataTypes.STRING, allowNull: false },

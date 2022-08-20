@@ -1,12 +1,21 @@
 const connectToDatabase = require('../../../config/db')
 
-module.exports.studentlist = async (data) => {
+module.exports.studentclasslist = async (data) => {
     const DB = await connectToDatabase()
     try {
-        const result = await DB.Models.student.findAll({  
-          attributes: {
-            exclude: ['password','image']
-        },
+         const result = await DB.Models.StudentClass.findAll({ include: [
+            {
+            model: DB.Models.classes, 
+            attributes:['id','name'], 
+            },
+            {
+                model: DB.Models.student,
+                attributes: {
+                    exclude: ['password','image']
+                }
+               }]
+          
+       ,attributes: ['id'],
         order: [ ["id", "DESC"]],where: data.where, raw: true })
      
         if(result.length>0){
@@ -38,20 +47,19 @@ module.exports.studentlist = async (data) => {
 module.exports.getOne = async (data) => {
     const DB = await connectToDatabase()
     try {
-        const result = await DB.Models.student.findAll({  include: [
+        const result = await DB.Models.StudentClass.findAll({  include: [
             {
             model: DB.Models.classes, 
-            attributes:['name'], 
+            attributes:['id','name'], 
             },
             {
-                model: DB.Models.subject,
-                attributes:['title'], 
-               
+                model: DB.Models.student,
+                attributes: {
+                    exclude: ['password','image']
+                }
                }]
-          ,
-          attributes: {
-            exclude: ['password','image']
-        }, where : data.where, raw: true })
+          
+       ,attributes: ['id'], where : data.where, raw: true })
      
         if(result.length>0){
           
@@ -77,13 +85,50 @@ module.exports.getOne = async (data) => {
 };
 
 
-
-
-
-module.exports.studentcreate = async (data) => {
+module.exports.getOneclass = async (data) => {
     const DB = await connectToDatabase()
     try {
-         await DB.Models.student.create( data)
+        const result = await DB.Models.StudentClass.findAll({  include: [
+            {
+                model: DB.Models.student,
+                attributes: {
+                    exclude: ['password','image']
+                }
+               }]
+          
+       ,attributes: ['id'],  where : data.where, order: [ ["student_id", "ASC"]],raw: true })
+      
+     
+        if(result.length>0){
+          
+                return ({ "status": 200, "success_status": true, "response": `Student list in class ${data.where.class_id}`, "info": result });
+
+            } else {
+                return ({ "status": 201, "success_status": true, "response": " Student list doest not exist", "info": result });
+    
+            }
+            
+        
+  
+    } catch (err) {
+        console.log(err);
+        return ({
+            "status": 500, "success_status": false, "response": "Bad request", "info": err
+            
+        })
+
+    } finally {
+        await DB.sequelize.close();
+    }
+};
+
+
+
+
+module.exports.studentclasscreate = async (data) => {
+    const DB = await connectToDatabase()
+    try {
+         await DB.Models.StudentClass.create( data)
      
         return ({ "status": 200, "success_status": true, "response": " Student created successfully"});
 
@@ -103,10 +148,10 @@ module.exports.studentcreate = async (data) => {
 
 
 
-module.exports.studentupdate = async (data) => {
+module.exports.studentclassupdate = async (data) => {
     const DB = await connectToDatabase()
     try {
-     await DB.Models.student.update(data, {where :data.where })
+     await DB.Models.StudentClass.update(data, {where :data.where })
      
       
           
@@ -128,10 +173,10 @@ module.exports.studentupdate = async (data) => {
 
 
 
-module.exports.studentdelete = async (data) => {
+module.exports.studentClassdelete = async (data) => {
     const DB = await connectToDatabase()
     try {
-     await DB.Models.student.update(data, {where :data.where })
+     await DB.Models.StudentClass.update(data, {where :data.where })
      
       
           

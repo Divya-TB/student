@@ -2,17 +2,16 @@
 
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define(
-        "subject",
+        "student_class",
         {
-            
-            title: { type: DataTypes.STRING, allowNull: true },
-            sub_title: { type: DataTypes.STRING, allowNull: true },
+            class_id:{type: DataTypes.INTEGER, allowNull: true},
+            student_id:{type: DataTypes.INTEGER, allowNull: true},
             status: { type: DataTypes.INTEGER, allowNull: true },
-           created_on: { type: DataTypes.STRING, allowNull: true },
+            created_on: { type: DataTypes.STRING, allowNull: true },
 
         },
         {
-            tableName: "subject",
+            tableName: "student_class",
             createdAt: true,
             updatedAt: true,
             underscored: true,

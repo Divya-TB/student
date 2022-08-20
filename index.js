@@ -31,6 +31,8 @@ const swaggerOptions = {
 
     "./app/modules/class/routes/class.routes.js",
     "./app/modules/subject/routes/subjects.routes.js",
+    "./app/modules/students_class/routes/student.class.routes.js",
+    "./app/modules/teacher_class/routes/teacher_class.routes.js",
   ],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -57,6 +59,8 @@ require("./app/modules/student/routes/students.routes.js")(app);
 require("./app/modules/teacher/routes/teachers.routes.js")(app);
 require("./app/modules/class/routes/class.routes.js")(app);
 require("./app/modules/subject/routes/subjects.routes.js")(app);
+require("./app/modules/students_class/routes/student.class.routes.js")(app);
+require("./app/modules/teacher_class/routes/teacher_class.routes.js")(app);
 
 
 

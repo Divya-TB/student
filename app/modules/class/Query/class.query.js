@@ -90,11 +90,12 @@ module.exports.classcreate = async (data) => {
 module.exports.classupdate = async (data) => {
     const DB = await connectToDatabase()
     try {
-     await DB.Models.classes.update(data, {where :data.where })
+     await DB.Models.classes.update(data, {where :data.where });
+     
      
       
           
-                return ({ "status": 200, "success_status": true, "response": " Class updated successfully"});
+    return ({ "status": 200, "success_status": true, "response": " Class updated successfully"});
 
          
   

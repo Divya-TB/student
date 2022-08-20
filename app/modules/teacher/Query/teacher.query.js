@@ -4,10 +4,7 @@ module.exports.teacherlist = async (data) => {
     const DB = await connectToDatabase()
     try {
         const result = await DB.Models.teacher.findAll({  include: [
-            {
-            model: DB.Models.classes, 
-            attributes:['name'], 
-            },
+           
             {
                 model: DB.Models.subject,
                 attributes:['title'], 
@@ -15,7 +12,7 @@ module.exports.teacherlist = async (data) => {
                }]
           ,
           attributes: {
-            exclude: ['password','image']
+            exclude: ['subject_id','password','image']
         },
         order: [ ["id", "DESC"]],where: data.where, raw: true })
      
@@ -49,10 +46,7 @@ module.exports.getOne = async (data) => {
     const DB = await connectToDatabase()
     try {
         const result = await DB.Models.teacher.findAll({  include: [
-            {
-            model: DB.Models.classes, 
-            attributes:['name'], 
-            },
+           
             {
                 model: DB.Models.subject,
                 attributes:['title'], 
@@ -60,7 +54,7 @@ module.exports.getOne = async (data) => {
                }]
           ,
           attributes: {
-            exclude: ['password','image']
+            exclude: ['subject_id','password','image']
         }, where : data.where, raw: true })
      
         if(result.length>0){

@@ -83,7 +83,11 @@ module.exports = app => {
    *         in: formData
    *         required: true
    *         type: string
-   *
+   * 
+   *       - name: user_type
+   *         in: formData
+   *         required: true
+   *         type: string
    *       - name: password
    *         in: formData
    *         required: true
@@ -170,7 +174,11 @@ module.exports = app => {
    *         in: formData
    *         required: true
    *         type: string
-   *
+   * 
+   *       - name: user_type
+   *         in: formData
+   *         required: true
+   *         type: string
    *       - name: password
    *         in: formData
    *         type: string

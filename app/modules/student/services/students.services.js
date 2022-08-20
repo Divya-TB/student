@@ -3,9 +3,10 @@ const Query = require('../Query/student.query')
 
 var moment = require('moment')
 const encrypt = require('../../../lib/bcrypt');
+const { user } = require('../../../config/db.config');
 
 
-module.exports.student =  async (req)=>{
+module.exports.student =  async ()=>{
   try{
   let query_builder={
     where : {status : 1}
@@ -34,7 +35,7 @@ module.exports.studentadd =  async (req)=>{
     const phone = await Query.getOne(phone_query)
     const email = await Query.getOne(email_query)
 
-  
+  console.log(req.body)
    
     
     if(phone.status === 200){
@@ -54,6 +55,7 @@ module.exports.studentadd =  async (req)=>{
 
     let query_builder = {
         ...req.body,
+        user_type: user,
         password : encrypted_password,
         status: 1,
         created_on: moment().format()

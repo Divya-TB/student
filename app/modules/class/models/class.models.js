@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
         {
             
             name: { type: DataTypes.STRING, allowNull: true },
-            subject_id : {type: DataTypes.JSON,allowNull: false},
             class_duration: { type: DataTypes.STRING, allowNull: true },
             class_start_time:  { type: DataTypes.STRING, allowNull: true },
             class_end_time:  { type: DataTypes.STRING, allowNull: true },
