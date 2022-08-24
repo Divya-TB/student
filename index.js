@@ -26,13 +26,14 @@ const swaggerOptions = {
     },
   },
   apis: [
-    "./app/modules/student/routes/students.routes.js",
-    "./app/modules/teacher/routes/teachers.routes.js",
+    "./app/modules/admin/student/routes/students.routes.js",
+    "./app/modules/admin/teacher/routes/teachers.routes.js",
 
-    "./app/modules/class/routes/class.routes.js",
-    "./app/modules/subject/routes/subjects.routes.js",
-    "./app/modules/students_class/routes/student.class.routes.js",
-    "./app/modules/teacher_class/routes/teacher_class.routes.js",
+    "./app/modules/admin/class/routes/class.routes.js",
+    "./app/modules/admin/subject/routes/subjects.routes.js",
+    "./app/modules/admin/students_class/routes/student.class.routes.js",
+    "./app/modules/admin/teacher_class/routes/teacher_class.routes.js",
+    "./app/modules/user/routes/user.routes.js"
   ],
 };
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -55,12 +56,13 @@ app.get("/", (req, res) => {
 
 
 
-require("./app/modules/student/routes/students.routes.js")(app);
-require("./app/modules/teacher/routes/teachers.routes.js")(app);
-require("./app/modules/class/routes/class.routes.js")(app);
-require("./app/modules/subject/routes/subjects.routes.js")(app);
-require("./app/modules/students_class/routes/student.class.routes.js")(app);
-require("./app/modules/teacher_class/routes/teacher_class.routes.js")(app);
+require("./app/modules/admin/student/routes/students.routes.js")(app);
+require("./app/modules/admin/teacher/routes/teachers.routes.js")(app);
+require("./app/modules/admin/class/routes/class.routes.js")(app);
+require("./app/modules/admin/subject/routes/subjects.routes.js")(app);
+require("./app/modules/admin/students_class/routes/student.class.routes.js")(app);
+require("./app/modules/admin/teacher_class/routes/teacher_class.routes.js")(app);
+require("./app/modules/user/routes/user.routes.js")(app);
 
 
 

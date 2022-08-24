@@ -4,12 +4,12 @@ require("dotenv").config();
 
 
 
-const subjectModel = require("../modules/subject/model/subject.model")
-const classModel = require("../modules/class/models/class.models")
-const teacherModel = require("../modules/teacher/models/teacher.model")
-const studentModel = require("../modules/student/model/student.model")
-const student_classModel = require('../modules/students_class/models/student.class.models')
-const teacher_classModel = require('../modules/teacher_class/models/teacher_class.models')
+const subjectModel = require("../modules/admin/subject/model/subject.model")
+const classModel = require("../modules/admin/class/models/class.models")
+const teacherModel = require("../modules/admin/teacher/models/teacher.model")
+const studentModel = require("../modules/admin/student/model/student.model")
+const student_classModel = require('../modules/admin/students_class/models/student.class.models')
+const teacher_classModel = require('../modules/admin/teacher_class/models/teacher_class.models')
 
 
 
